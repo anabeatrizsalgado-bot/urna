@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+
+:root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --primary: #38bdf8;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --text: #e2e8f0;
+    --muted: #64748b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.urna-container {
+    background: var(--panel);
+    width: 800px;
+    height: 600px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.tela {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.tela.ativa { display: flex; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== TELA LOGIN ===== */
+h1 { font-size: 42px; color: var(--primary); margin-bottom: 5px; }
+h1 span { color: var(--text); }
+.subtitulo { color: var(--muted); letter-spacing: 2px; margin-bottom: 40px; }
+
+.campo-grupo { width: 100%; max-width: 300px; margin-bottom: 20px; }
+.campo-grupo label { display: block; color: var(--muted); margin-bottom: 8px; font-size: 14px; }
+.campo-grupo input {
+    width: 100%;
+    padding: 15px;
+    background: #0b1220;
+    border: 2px solid #334155;
+    border-radius: 10px;
+    color: var(--green);
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    transition: 0.2s;
+}
+.campo-grupo input:focus { border-color: var(--primary); }
+
+button {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 10px;
+}
+
+.btn-primario { background: var(--primary); color: var(--bg); }
+.btn-primario:hover { background: #7dd3fc; transform: scale(1.02); }
+.btn-secundario { background: #334155; color: var(--text); }
+.btn-secundario:hover { background: #475569; }
+
+.mensagem { margin-top: 15px; font-weight: bold; color: var(--red); }
+
+/* ===== TELA VOTAÇÃO ===== */
+.header-votacao {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+.badge { background: var(--primary); color: var(--bg); padding: 5px 15px; border-radius: 20px; font-size: 14px; }
+
+.painel-votacao { display: flex; gap: 20px; width: 100%; height: 100%; }
+
+.lista-candidatos {
+    flex: 1;
+    background: #0b1220;
+    border-radius: 10px;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.candidato-item {
+    display: flex;
+    align-items: center;
+    background: var(--panel);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--yellow);
+}
+.candidato-item .num { font-size: 24px; font-weight: bold; color: var(--yellow); width: 60px; }
+.candidato-item .nome { font-size: 18px; font-weight: 600; flex: 1; }
+.candidato-item .partido { color: var(--muted); font-size: 14px; }
+
+/* Teclado */
+.teclado-numerico { width: 320px; display: flex; flex-direction: column; gap: 15px; }
+.display {
+    background: #0b1220;
+    height: 70px;
+    border-radius: 10px;
+    border: 2px solid #334155;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--green);
+    letter-spacing: 5px;
+}
+
+.botoes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+.btn-tecla {
+    background: #334155;
+    color: var(--text);
+    font-size: 24px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 0;
+}
+.btn-tecla:hover { background: #475569; }
+.zero { grid-column: 2; }
+
+.botoes-acao { display: flex; gap: 10px; }
+.botoes-acao button { padding: 20px 10px; margin: 0; font-size: 14px; }
+.btn-branco { background: var(--yellow); color: var(--bg); }
+.btn-branco:hover { background: #fef08a; }
+.btn-corrige { background: var(--red); color: white; }
+.btn-corrige:hover { background: #f87171; }
+.btn-confirma { background: var(--green); color: var(--bg); }
+.btn-confirma:hover { background: #4ade80; }
+
+/* ===== TELA FIM ===== */
+.check-icon {
+    width: 100px; height: 100px;
+    background: rgba(34, 197, 94, 0.2);
+    color: var(--green);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 50px;
+    margin-bottom: 20px;
+    animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes pop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+h2 { color: var(--green); margin-bottom: 10px; }
+#tela-fim p { color: var(--muted); margin-bottom: 30px; }

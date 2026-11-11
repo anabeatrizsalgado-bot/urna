@@ -1,0 +1,6 @@
+10;Maria Silva;Presidente
+20;João Pereira;Presidente
+99;NULO;Presidente
+100;Ricardo Gomes;Governador
+200;Fernanda Reis;Governador
+999;NULO;Governador

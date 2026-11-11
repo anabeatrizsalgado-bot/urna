@@ -1,0 +1,378 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;700&display=swap');
+
+:root {
+    --bg: #05050f;
+    --panel: rgba(15, 15, 30, 0.7);
+    --neon-cyan: #0ff;
+    --neon-pink: #f0f;
+    --text: #fff;
+    --muted: #6688cc;
+    --green: #0f0;
+    --red: #f00;
+    --yellow: #ff0; 
+}
+
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Rajdhani', sans-serif; 
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Fundo com brilho neon */
+.glow-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 20% 20%, rgba(255, 0, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.15), transparent 40%);
+    z-index: -1;
+}
+
+/* Telas e Animações */
+.tela { 
+    display: none; 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+}
+.tela.ativa { 
+    display: flex; 
+    animation: fadeIn 0.5s ease-out; 
+}
+@keyframes fadeIn { 
+    from { opacity: 0; transform: scale(0.98); } 
+    to { opacity: 1; transform: scale(1); } 
+}
+
+/* Cards Cyberpunk (Glassmorphism) */
+.cyber-card {
+    background: var(--panel);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(255, 0, 255, 0.05);
+    text-align: center;
+    width: 100%; max-width: 450px;
+}
+
+.neon-text { 
+    font-family: 'Orbitron', sans-serif; 
+    font-size: 40px; 
+    color: #fff; 
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan); 
+}
+.neon-text span { 
+    color: var(--neon-pink); 
+    text-shadow: 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink); 
+}
+.subtitle { 
+    color: var(--muted); 
+    letter-spacing: 5px; 
+    margin-bottom: 30px; 
+    font-size: 12px; 
+}
+
+/* Inputs */
+.input-group input {
+    width: 100%; 
+    padding: 15px; 
+    background: rgba(0,0,0,0.5);
+    border: 2px solid rgba(0, 255, 255, 0.3); 
+    border-radius: 8px;
+    color: var(--neon-cyan); 
+    font-size: 24px; 
+    font-family: 'Orbitron', sans-serif;
+    text-align: center; 
+    outline: none; 
+    margin-bottom: 20px; 
+    transition: 0.3s;
+}
+.input-group input:focus { 
+    border-color: var(--neon-cyan); 
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); 
+}
+
+/* Botões Globais */
+.btn-cyber {
+    width: 100%; 
+    padding: 15px; 
+    border: none; 
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif; 
+    font-weight: bold; 
+    font-size: 14px;
+    cursor: pointer; 
+    transition: 0.3s; 
+    margin-bottom: 15px; 
+    letter-spacing: 2px;
+}
+.btn-primary { 
+    background: transparent; 
+    border: 2px solid var(--neon-cyan); 
+    color: var(--neon-cyan); 
+}
+.btn-primary:hover { 
+    background: var(--neon-cyan); 
+    color: #000; 
+    box-shadow: 0 0 20px var(--neon-cyan); 
+}
+.btn-outline { 
+    background: transparent; 
+    border: 2px solid var(--muted); 
+    color: var(--muted); 
+}
+.btn-outline:hover { 
+    border-color: var(--text); 
+    color: var(--text); 
+}
+.erro-texto { 
+    color: var(--red); 
+    font-weight: bold; 
+    margin-top: 10px; 
+    text-shadow: 0 0 5px var(--red); 
+}
+
+/* ===== TELA DE VOTAÇÃO ===== */
+.voto-container { 
+    width: 90%; 
+    max-width: 1000px; 
+    height: 80vh; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+}
+.cyber-header {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    background: var(--panel); 
+    padding: 20px; 
+    border-radius: 10px;
+    border-left: 5px solid var(--neon-pink); 
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.2);
+}
+.cargo-info .label { 
+    font-size: 10px; 
+    color: var(--muted); 
+    letter-spacing: 2px; 
+}
+.cargo-info h2 { 
+    font-family: 'Orbitron'; 
+    color: var(--neon-pink); 
+    font-size: 28px; 
+    text-shadow: 0 0 10px rgba(255,0,255,0.5); 
+}
+.progresso-cyber { 
+    font-family: 'Orbitron'; 
+    font-size: 20px; 
+    color: var(--neon-cyan); 
+    background: rgba(0,255,255,0.1); 
+    padding: 5px 15px; 
+    border-radius: 5px; 
+    border: 1px solid var(--neon-cyan); 
+}
+
+.voto-main { 
+    display: flex; 
+    gap: 20px; 
+    flex: 1; 
+}
+.lista-candidatos-cyber { 
+    flex: 1; 
+    background: var(--panel); 
+    border-radius: 10px; 
+    border: 1px solid rgba(255,255,255,0.1); 
+    padding: 20px; 
+    overflow-y: auto; 
+}
+.cand-item { 
+    display: flex; 
+    align-items: center; 
+    padding: 15px; 
+    border-bottom: 1px solid rgba(255,255,255,0.05); 
+}
+.cand-item .num { 
+    font-family: 'Orbitron'; 
+    font-size: 24px; 
+    color: var(--neon-cyan); 
+    width: 70px; 
+}
+.cand-item .nome { 
+    font-size: 20px; 
+    font-weight: 700; 
+    flex: 1; 
+}
+.cand-item .partido { 
+    background: rgba(255,0,255,0.2); 
+    color: var(--neon-pink); 
+    padding: 3px 10px; 
+    border-radius: 5px; 
+    font-size: 14px; 
+    border: 1px solid var(--neon-pink); 
+}
+
+.painel-teclado { 
+    width: 380px; 
+    background: var(--panel); 
+    padding: 20px; 
+    border-radius: 10px; 
+    border: 1px solid rgba(255,255,255,0.1); 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+.display-cyber {
+    background: rgba(0,0,0,0.8); 
+    height: 80px; 
+    border-radius: 8px; 
+    border: 2px solid var(--neon-cyan);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 40px; 
+    font-family: 'Orbitron'; 
+    color: var(--neon-cyan);
+    box-shadow: inset 0 0 20px rgba(0, 255, 255, 0.2);
+}
+.grid-teclado { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 10px; 
+}
+.grid-teclado button {
+    background: rgba(255,255,255,0.05); 
+    border: 1px solid rgba(255,255,255,0.1); 
+    color: #fff;
+    font-size: 24px; 
+    font-family: 'Orbitron'; 
+    padding: 20px; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    transition: 0.2s;
+}
+.grid-teclado button:hover { 
+    background: rgba(0,255,255,0.2); 
+    border-color: var(--neon-cyan); 
+}
+.grid-teclado .zero { 
+    grid-column: 2; 
+}
+
+.acoes-teclado { 
+    display: flex; 
+    gap: 10px; 
+}
+.acoes-teclado button { 
+    flex: 1; 
+    padding: 15px 5px; 
+    font-family: 'Orbitron'; 
+    font-size: 11px; 
+    font-weight: bold; 
+    border-radius: 8px; 
+    cursor: pointer; 
+    border: none; 
+    transition: 0.3s; 
+}
+.btn-branco { background: transparent; border: 1px solid var(--neon-cyan); color: var(--neon-cyan); }
+.btn-corrige { background: transparent; border: 1px solid var(--red); color: var(--red); }
+.btn-confirma { background: transparent; border: 1px solid var(--green); color: var(--green); }
+.btn-branco:hover { background: var(--neon-cyan); color: #000; }
+.btn-corrige:hover { background: var(--red); color: #000; }
+.btn-confirma:hover { background: var(--green); color: #000; box-shadow: 0 0 15px var(--green); }
+
+/* ===== TELA DE SUCESSO ===== */
+.sucesso { 
+    border-color: var(--green); 
+    box-shadow: 0 0 30px rgba(0,255,0,0.2); 
+}
+.icon-sucesso { 
+    font-size: 60px; 
+    color: var(--green); 
+    text-shadow: 0 0 20px var(--green); 
+    margin-bottom: 20px; 
+}
+
+/* ===== DASHBOARD E RESULTADOS ===== */
+.dashboard { 
+    padding: 40px; 
+    justify-content: flex-start; 
+}
+.dashboard-header { 
+    width: 100%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 30px; 
+}
+.dashboard-header h2 { 
+    font-size: 32px; 
+}
+.dashboard-header button { 
+    width: auto; 
+    padding: 10px 30px; 
+    margin: 0;
+}
+.dashboard-grid { 
+    width: 100%; 
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    gap: 30px; 
+    height: 70vh; 
+}
+.grafico-card { 
+    width: 100%; 
+    max-width: 100%; 
+    display: flex; 
+    flex-direction: column; 
+    text-align: left; 
+}
+.grafico-card h3, .stats-card h3 { 
+    color: var(--muted); 
+    font-family: 'Orbitron'; 
+    margin-bottom: 20px; 
+    letter-spacing: 2px; 
+}
+canvas { 
+    flex: 1; 
+}
+.stats-card { 
+    width: 100%; 
+    max-width: 100%; 
+    text-align: left; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+}
+.stat-item { 
+    background: rgba(0,0,0,0.3); 
+    padding: 20px; 
+    border-left: 4px solid var(--neon-cyan); 
+    border-radius: 5px; 
+}
+.stat-item .val { 
+    font-family: 'Orbitron'; 
+    font-size: 32px; 
+    color: var(--neon-cyan); 
+    display: block; 
+    text-shadow: 0 0 10px rgba(0,255,255,0.3); 
+}
+.stat-item .lbl { 
+    color: var(--muted); 
+    font-size: 12px; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}

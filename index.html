@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cyber Voting 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="glow-bg"></div>
+
+    <!-- TELA 1: AUTENTICAÇÃO -->
+    <div id="tela-login" class="tela ativa">
+        <div class="cyber-card">
+            <h1 class="neon-text">CYBER<span>VOTE</span></h1>
+            <p class="subtitle">SECURE TERMINAL // 2026</p>
+            
+            <div class="input-group">
+                <input type="text" id="input-eleitor" placeholder="IDENTIFICAÇÃO (ID)" autocomplete="off">
+            </div>
+            
+            <button onclick="autenticar()" class="btn-cyber btn-primary">INICIAR VOTAÇÃO</button>
+            <button onclick="mostrarResultadosPublicos()" class="btn-cyber btn-outline" style="border-color: var(--neon-pink); color: var(--neon-pink)">RESULTADOS PARCIAIS</button>
+            <button onclick="mostrarTela('tela-admin')" class="btn-cyber btn-outline" style="margin-top: 10px; font-size: 11px;">ACESSO ADMINISTRADOR</button>
+            <p id="msg-erro" class="erro-texto"></p>
+        </div>
+    </div>
+
+    <!-- TELA 2: VOTAÇÃO -->
+    <div id="tela-voto" class="tela">
+        <div class="voto-container">
+            <header class="cyber-header">
+                <div class="cargo-info">
+                    <span class="label">ALVO ATUAL</span>
+                    <h2 id="cargo-atual">CARREGANDO...</h2>
+                </div>
+                <div class="progresso-cyber">
+                    <span id="progresso">1 / 3</span>
+                </div>
+            </header>
+
+            <main class="voto-main">
+                <div class="lista-candidatos-cyber" id="lista-candidatos"></div>
+                
+                <div class="painel-teclado">
+                    <div class="display-cyber" id="display-numero"></div>
+                    <div class="grid-teclado">
+                        <button onclick="digitar('1')">1</button>
+                        <button onclick="digitar('2')">2</button>
+                        <button onclick="digitar('3')">3</button>
+                        <button onclick="digitar('4')">4</button>
+                        <button onclick="digitar('5')">5</button>
+                        <button onclick="digitar('6')">6</button>
+                        <button onclick="digitar('7')">7</button>
+                        <button onclick="digitar('8')">8</button>
+                        <button onclick="digitar('9')">9</button>
+                        <button onclick="digitar('0')" class="zero">0</button>
+                    </div>
+                    <div class="acoes-teclado">
+                        <button class="btn-branco" onclick="votarBranco()">BRANCO</button>
+                        <button class="btn-corrige" onclick="limparDisplay()">CORRIGE</button>
+                        <button class="btn-confirma" onclick="confirmarVoto()">CONFIRMA</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- TELA 3: SUCESSO -->
+    <div id="tela-fim" class="tela">
+        <div class="cyber-card sucesso">
+            <div class="icon-sucesso">✓</div>
+            <h2 class="neon-text">VOTO COMPUTADO</h2>
+            <p>Seu voto foi criptografado e registrado na rede.</p>
+            <button onclick="voltarInicio()" class="btn-cyber btn-primary" style="margin-top: 20px;">FINALIZAR</button>
+        </div>
+    </div>
+
+    <!-- TELA 4: RESULTADOS PÚBLICOS -->
+    <div id="tela-publico" class="tela dashboard">
+        <div class="dashboard-header">
+            <h2 class="neon-text">RESULTADOS <span>PARCIAIS</span></h2>
+            <button onclick="mostrarTela('tela-login')" class="btn-cyber btn-outline">VOLTAR</button>
+        </div>
+        <div class="dashboard-grid">
+            <div class="cyber-card grafico-card">
+                <h3>INTENÇÃO DE VOTO (TEMPO REAL)</h3>
+                <canvas id="chart-publico"></canvas>
+            </div>
+            <div class="cyber-card stats-card">
+                <h3>STATUS DA REDE</h3>
+                <div id="stats-publico"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TELA 5: DASHBOARD ADMIN -->
+    <div id="tela-admin" class="tela dashboard">
+        <div class="dashboard-header">
+            <h2 class="neon-text">DATA <span>CENTER</span></h2>
+            <div style="display: flex; gap: 10px;">
+                <button onclick="gerarBoletim()" class="btn-cyber btn-outline" style="border-color: var(--yellow); color: var(--yellow);">GERAR BU</button>
+                <button onclick="auditarUrna()" class="btn-cyber btn-outline" style="border-color: var(--green); color: var(--green);">AUDITAR</button>
+                <button onclick="mostrarTela('tela-login')" class="btn-cyber btn-outline">SAIR</button>
+            </div>
+        </div>
+        <div class="dashboard-grid">
+            <div class="cyber-card grafico-card">
+                <h3>ANÁLISE DE VOTOS</h3>
+                <canvas id="chart-votos"></canvas>
+            </div>
+            <div class="cyber-card stats-card">
+                <h3>TELEMETRIA</h3>
+                <div id="stats-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
